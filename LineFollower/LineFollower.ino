@@ -48,12 +48,16 @@ int PID(int Error){
 
 
 void cntrlMotor(int pidOutput){
+  int turnVal = baseSpeed + abs(pidOutput);
+  if(turnVal > 255 ){
+    turnVal = 255;
+  }
   if (pidOutput > 0) {
-    analogWrite(enableA, abs(baseSpeed+pidOutput));  // If robot is towards right
+    analogWrite(enableA, abs(turnVal));     // If robot is towards right
     analogWrite(enableB, abs(baseSpeed));
   } else{
-    analogWrite(enableA, abs(baseSpeed));
-    analogWrite(enableB, abs(baseSpeed+pidOutput));  // If robot is towards left
+    analogWrite(enableA, (baseSpeed));
+    analogWrite(enableB, abs(turnVal));     // If robot is towards left
   }
 }
 

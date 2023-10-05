@@ -35,13 +35,13 @@ void setup() {
 
 
 int PID(int Error){
-  float Proportional = kp * Error;                 // proportional out 
-  kiError = kiError + Error;                       // total error calculation
+  float Proportional = kp * Error;                 // Proportional out 
+  kiError = kiError + Error;                       
   float Integral = ki * kiError;                   // integral out    
   float Differential = kd * (Error*prevError);     // differential out
   prevError = Error;
   // Final Error
-  float Total_out =  Proportional+Integral+Differential
+  float Total_out =  Proportional+Integral+Differential  // total error calculation
   // Returning Error      
   return int(Total_out); 
 }

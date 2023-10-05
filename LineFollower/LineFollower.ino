@@ -7,7 +7,7 @@ by- Shagnik Guha
 
 const int input1A = 7;                             // Input pin 1 for Motor A
 const int input2A = 8;                             // Input pin 2 for Motor A
-const int enableA = 9;                             //  Enable pin for Motor A
+const int enableA = 9;                             // Enable pin for Motor A
 
 const int input1B = 1;                             // Input pin 1 for Motor B
 const int input2B = 2;                             // Input pin 2 for Motor B

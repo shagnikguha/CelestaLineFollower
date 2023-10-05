@@ -2,7 +2,7 @@
 Arduino DC Motor Control - PWM | H-Bridge | L298N 
 Control Logic - PID
 Arduino IR sensor - |unknown model|
-by- Shagnik Guha, Mohammed Sahil
+by- Shagnik Guha
 */
 
 const int input1A = 7;                             // Input pin 1 for Motor A

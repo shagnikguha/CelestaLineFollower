@@ -7,7 +7,7 @@ by- Shagnik Guha
 
 const int input1A = 7;                             // Input pin 1 for Motor A
 const int input2A = 8;                             // Input pin 2 for Motor A
-const int enableA = 9;                             // Enable pin for Motor A
+const int enableA = 9;                             //  Enable pin for Motor A
 
 const int input1B = 1;                             // Input pin 1 for Motor B
 const int input2B = 2;                             // Input pin 2 for Motor B
@@ -37,11 +37,11 @@ void setup() {
 int PID(int Error){
   float Proportional = kp * Error;                 // Proportional out 
   kiError = kiError + Error;                       
-  float Integral = ki * kiError;                   // integral out    
-  float Differential = kd * (Error*prevError);     // differential out
+  float Integral = ki * kiError;                   // Integral out    
+  float Differential = kd * (Error*prevError);     // Differential out
   prevError = Error;
   // Final Error
-  float Total_out =  Proportional+Integral+Differential  // total error calculation
+  float Total_out =  Proportional+Integral+Differential;// total error calculation
   // Returning Error      
   return int(Total_out); 
 }
@@ -68,4 +68,3 @@ void loop() {
   
   delay(20);
 }
-

@@ -1,6 +1,6 @@
 /*
-0 -> black
-1 -> white
+  0 -> black
+  1 -> white
 */
 
 //**********5 Channel IR Sensor Connection**********//

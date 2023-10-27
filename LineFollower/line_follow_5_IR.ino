@@ -73,7 +73,7 @@ void cntrlMotor(int pidOutput) {
   }
    
   // Stopping motors when error is too large
-  if (Error=1000){
+  if (Error=5){
     analogWrite(enableA,0);
     analogWrite(enableB,0);
   }
@@ -120,6 +120,7 @@ int calculateError() {
     0 1 0 0 0 ==> Error = -2
     1 1 0 0 0 ==> Error = -3
     1 0 0 0 0 ==> Error = -4 
+    1 1 1 1 1 ==> Error = 5
   */
 
   // Calculate the error based on sensor readings
@@ -153,20 +154,20 @@ int calculateError() {
   {error = 2;}
   //if all sensors are on a black line
   if((s1 == 1) && (s2 == 1) && (s3 == 1) && (s4 == 1) && (s5 == 1))
-  {error = 1000;}
+  {error = 5;}
 
   return error;
 }
 
 void loop() {
   Error = calculateError();
-  Serial.print("Error: ");
-  Serial.println(Error);
+  // Serial.print("Error: ");
+  // Serial.println(Error);
 
   int p_val = PID(Error);
 
-  Serial.print("PID Output: ");
-  Serial.println(p_val);
+  // Serial.print("PID Output: ");
+  // Serial.println(p_val);
   
   cntrlMotor(p_val);
   delay(10);

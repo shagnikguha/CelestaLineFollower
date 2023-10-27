@@ -1,9 +1,9 @@
-/* Line follower Arduino
+/*
+   Line follower Arduino
    Sensor - 5 IR sensor
    Black = 1 , white = 0 
    Controller - PID
-
-by mohammed sahil */
+*/
 
 
 const int input1A = 1;                             // Input pin 1 for Motor A
@@ -28,7 +28,7 @@ float kiError = 0;
 
 int baseSpeed = 100;    
 
-int error = 0 ;
+int Error = 0 ;
 
 
 void setup() {
@@ -70,13 +70,18 @@ void cntrlMotor(int pidOutput) {
   if (turnVal > 255) {
     turnVal = 255;
   }
-  if (error=1000){
+   
+  // Stopping motors when error is too large
+  if (Error=1000){
     analogWrite(enableA,0);
     analogWrite(enableB,0);
   }
-  int leftSpeed, rightSpeed;
+   
+  // Update from old code. Chagning values here and sending signals at end 
+  int leftSpeed = 0;
+  int rightSpeed = 0;
   if (pidOutput > 0) {
-    leftSpeed = abs(turnVal);  // If robot is turning right
+    leftSpeed = abs(turnVal);   // If robot is turning right
     rightSpeed = baseSpeed;
   } else if (pidOutput < 0) {
     leftSpeed = baseSpeed;
@@ -86,12 +91,13 @@ void cntrlMotor(int pidOutput) {
     rightSpeed = baseSpeed;  // Go straight
   }
 
-  // Control the motors
+  // Controlling the motors
   analogWrite(enableA, leftSpeed);
   analogWrite(enableB, rightSpeed);
 }
 
 int calculateError() {
+  // Gathering data from sensors
   int s1 = digitalRead(ir1);  // Left Most Sensor
   int s2 = digitalRead(ir2);  // Left Sensor
   int s3 = digitalRead(ir3);  // Middle Sensor
@@ -101,9 +107,10 @@ int calculateError() {
   // Variables for the error calculation
   int error = 0;
 
-//Assuming Black = 1 && White  = 0
+  //Assuming Black = 1 && White  = 0
 
-  /*0 0 0 0 1 ==> Error = 4
+  /*
+    0 0 0 0 1 ==> Error = 4
     0 0 0 1 1 ==> Error = 3
     0 0 0 1 0 ==> Error = 2
     0 0 1 1 0 ==> Error = 1
@@ -111,9 +118,11 @@ int calculateError() {
     0 1 1 0 0 ==> Error = -1
     0 1 0 0 0 ==> Error = -2
     1 1 0 0 0 ==> Error = -3
-    1 0 0 0 0 ==> Error = -4 */
+    1 0 0 0 0 ==> Error = -4 
+  */
 
   // Calculate the error based on sensor readings
+   
   //if only middle sensor detects black line
   if((s1 == 0) && (s2 == 0) && (s3 == 1) && (s4 == 0) && (s5 == 0))
   {error = 0; }
@@ -149,11 +158,11 @@ int calculateError() {
 }
 
 void loop() {
-  error = calculateError() ;
+  Error = calculateError() ;
   Serial.print("Error: ");
-  Serial.println(error);
+  Serial.println(Error);
 
-  int p_val = PID(error);
+  int p_val = PID(Error);
 
   Serial.print("PID Output: ");
   Serial.println(p_val);

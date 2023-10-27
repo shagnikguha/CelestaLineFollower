@@ -1,7 +1,8 @@
 /*
    Line follower Arduino
    Sensor - 5 IR sensor
-   Black = 1 , white = 0 
+   Black = 1
+   White = 0 
    Controller - PID
 */
 
@@ -14,7 +15,7 @@ const int input1B = 5;                             // Input pin 1 for Motor B
 const int input2B = 6;                             // Input pin 2 for Motor B
 const int enableB = 7;                             // Enable pin for Motor B
 
-int const ir1 = A0;                                // ir (can be analog or digitral)
+int const ir1 = A0;                                // IR (can be analog or digitral)
 int const ir2 = A1;
 int const ir3 = A2;
 int const ir4 = A3;
@@ -28,7 +29,7 @@ float kiError = 0;
 
 int baseSpeed = 100;    
 
-int Error = 0 ;
+int Error = 0;
 
 
 void setup() {
@@ -158,7 +159,7 @@ int calculateError() {
 }
 
 void loop() {
-  Error = calculateError() ;
+  Error = calculateError();
   Serial.print("Error: ");
   Serial.println(Error);
 

@@ -1,9 +1,10 @@
 /*  
-Arduino DC Motor Control - PWM | H-Bridge | L298N 
-Control Logic - PID
-Arduino IR sensor - |unknown model|
-by- Shagnik Guha
+  Arduino DC Motor Control - PWM | H-Bridge | L298N 
+  Control Logic - PID
+  Arduino IR sensor - |unknown model|
 */
+
+// Basic framework for a line-follower bot
 
 const int input1A = 7;                             // Input pin 1 for Motor A
 const int input2A = 8;                             // Input pin 2 for Motor A

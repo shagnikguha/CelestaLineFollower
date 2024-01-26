@@ -91,6 +91,12 @@ void cntrlMotor(int pidOutput) {
     leftSpeed = baseSpeed;
     rightSpeed = baseSpeed;  // Go straight
   }
+   
+  digitalWrite(input1A, HIGH);
+  digitalWrite(input2A, LOW);
+
+  digitalWrite(input1B, HIGH);
+  digitalWrite(input2B, LOW);
 
   // Controlling the motors
   analogWrite(enableA, leftSpeed);
